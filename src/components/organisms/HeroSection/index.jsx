@@ -87,7 +87,7 @@ const HeroSection = () => {
             }}
           >
             <Image
-              src="/images/updatedhero4.svg"
+              src="/images/heroimagedark.svg"
               alt="Hero Banner"
               layout="responsive"
               width={10}
@@ -109,7 +109,7 @@ const HeroSection = () => {
             className="absolute inset-0"
           >
             <Image
-              src="/images/updatedhero3.svg"
+              src="/images/heroimage1.svg"
               alt="Hero Banner"
               layout="responsive"
               width={10}
