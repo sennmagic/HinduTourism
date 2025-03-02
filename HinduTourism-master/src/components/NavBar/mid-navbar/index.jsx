@@ -9,7 +9,7 @@ const Midnavbar = ({ isMenuOpen, navItems }) => {
 
   return (
     <nav
-      className={`sticky top-20 left-0 w-full bg-[#fcfaf1] shadow-md transition-all duration-300 z-50 ${
+      className={`fixed bottom-0 left-0 w-full bg-[#fcfaf1] shadow-md transition-all duration-300 z-50 md:sticky md:top-20 ${
         isMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
@@ -22,7 +22,7 @@ const Midnavbar = ({ isMenuOpen, navItems }) => {
                   href={`#${item.id}`}
                   onClick={(e) => {
                     e.preventDefault();
-                    scrollToSection(item.id)
+                    scrollToSection(item.id);
                   }}
                   className={`px-3 py-1 md:px-4 bg-[#fcfaf1] rounded-[20px] flex items-center justify-center text-sm md:text-[15px] font-semibold leading-snug hover:text-[#d14343] transition-colors ${
                     activeSection === item.id

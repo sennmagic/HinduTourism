@@ -15,7 +15,6 @@ export const fetchAPI = async (
   if (id) url = `${url}/${id}`
   if (slug) url = `${url}?slug=${slug}`
 
-
   const isFormData = data instanceof FormData
   const options = {
     method,
