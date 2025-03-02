@@ -26,7 +26,13 @@ const HeaderBanner = ({
 
       {/* Content Section */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-        <TextHeader text={title} size="medium" color={titleColor} align="center" />
+      <TextHeader 
+  text={title} 
+  size="medium" 
+  color={titleColor} 
+  align="center" 
+  className="hidden md:block"  // This hides on mobile, shows from md breakpoint up
+/>
         {subtitle && (
           <p
             className={`mt-4 text-${subtitleColor} text-2xl font-light font-['Inter'] leading-normal`}
