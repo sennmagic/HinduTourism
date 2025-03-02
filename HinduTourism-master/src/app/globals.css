@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Face Declaration */
+@font-face {
+  font-family: 'custom';
+  src: local('Fontspring-DEMO-BOLD-ITALIC.otf'),
+       url('/public/fonts/Fontspring-DEMO-BOLD-ITALIC.otf') format('opentype');
+  font-weight: normal;
+  
+  font-style: normal;
+}
+
+/* Custom Scrollbar Styles */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Hides the scrollbar for Webkit-based browsers */
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Custom Background Color */
+body {
+  @apply bg-[rgba(252,250,241,1)]; /* Tailwind utility for background color */
+  font-family: 'custom', sans-serif; /* Use the custom font */
+}
+html {
+  scroll-behavior: smooth;
+}
