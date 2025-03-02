@@ -14,6 +14,7 @@ const BlogPage = () => {
   const [selectedType, setSelectedType] = useState("Hindu");
   const [preview, setPreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
+  const [submitMessage, setSubmitMessage] = useState("");
 
   const types = ["Hindu", "Nepal", "Tourism"];
 
@@ -21,19 +22,16 @@ const BlogPage = () => {
     title: "",
     content: "",
     author: "loneWolf",
-    category: "Travel Tips",
+    category: "67b4162184adf1fc9b8274e3", // Use actual category ID
   });
-
-  const [submitMessage, setSubmitMessage] = useState("");
 
   const fetchBlogs = async () => {
     try {
       const response = await fetchAPI("blogs", "GET");
-      if (response?.data) {
-        setBlogdata(response.data);
-      }
+      response?.data && setBlogdata(response.data);
     } catch (error) {
       console.error("Error fetching blogs:", error);
+      setSubmitMessage("Failed to load blogs");
     }
   };
 
@@ -43,20 +41,10 @@ const BlogPage = () => {
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
-    if (file) {
+    if (file && file.type.startsWith("image/")) {
       setImageFile(file);
       setPreview(URL.createObjectURL(file));
     }
-  };
-
- 
-
-  const toggleAddBlog = () => {
-    setIsAddBlogOpen(!isAddBlogOpen);
-  };
-
-  const handleCategoryChange = (selectedCategory) => {
-    setCategory(selectedCategory);
   };
 
   const handleSaveBlog = async (e) => {
@@ -64,7 +52,7 @@ const BlogPage = () => {
     setSubmitMessage("Saving...");
 
     if (!newBlog.title.trim() || !newBlog.content.trim()) {
-      alert("Title and content are required.");
+      alert("Please fill all required fields");
       return;
     }
 
@@ -72,58 +60,65 @@ const BlogPage = () => {
     formData.append("title", newBlog.title);
     formData.append("content", newBlog.content);
     formData.append("author", newBlog.author);
-    formData.append("category", "67b4162184adf1fc9b8274e3");
+    formData.append("category", newBlog.category);
 
     if (imageFile) {
-      formData.append("image", imageFile);
+      formData.append("images", imageFile); // Match server's expected field name
     }
 
     try {
       const response = await fetchAPI("blogs", "POST", formData);
+
       if (response?.data) {
-        setBlogdata((prev) => [...prev, response.data]);
+        setBlogdata(prev => [response.data, ...prev]);
         setIsAddBlogOpen(false);
         setNewBlog({
           title: "",
           content: "",
           author: "loneWolf",
-          category: "Travel Tips",
+          category: "67b4162184adf1fc9b8274e3",
         });
         setImageFile(null);
         setPreview(null);
-        setSubmitMessage("Blog posted successfully!");
+        setSubmitMessage("Blog created successfully!");
+        setTimeout(() => setSubmitMessage(""), 3000);
       } else {
-        setSubmitMessage("Failed to post blog. Please try again.");
+        setSubmitMessage(response?.message || "Failed to create blog");
       }
     } catch (error) {
-      console.error("Error posting blog:", error);
-      setSubmitMessage("Error posting blog. Please try again.");
+      console.error("Blog creation error:", error);
+      setSubmitMessage(error.message || "Error creating blog");
     }
   };
 
   const filteredBlogs = useMemo(() => {
-    if (category === "all") return blogdata;
-    return blogdata.filter((blog) => blog.category.name === category);
+    return category === "all" 
+      ? blogdata 
+      : blogdata.filter(blog => blog.category.name === category);
   }, [category, blogdata]);
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-        <h1 className="text-3xl font-bold text-center sm:text-left">Blog Management</h1>
+        <h1 className=" text-3xl font-bold text-center sm:text-left">Blog Management</h1>
         <div className="flex items-center gap-4">
           <select
-            value={selectedType}
-            onChange={(e) => setSelectedType(e.target.value)}
-            className="px-4 py-2 rounded-lg shadow-md bg-gray-200 text-black hover:bg-gray-300"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="px-4 py-2  text-black hover:bg-gray-300"
           >
-            {types.map((type) => (
-              <option key={type} value={type}>
-                {type}
+            <option value="all">All Categories</option>
+            {blogdata.reduce((acc, blog) => {
+              const exists = acc.some(cat => cat === blog.category.name);
+              return exists ? acc : [...acc, blog.category.name];
+            }, []).map(category => (
+              <option key={category} value={category}>
+                {category}
               </option>
             ))}
           </select>
           <Button
-            onClick={toggleAddBlog}
+            onClick={() => setIsAddBlogOpen(!isAddBlogOpen)}
             text={isAddBlogOpen ? "Close" : "Add Blog +"}
             variant="default"
             size="medium"
@@ -132,33 +127,21 @@ const BlogPage = () => {
       </div>
 
       {isAddBlogOpen && (
-        <div className="fixed inset-0  flex items-center justify-center z-50">
-          <div className="rounded-2xl shadow-lg p-8 w-full max-w-lg relative bg-white">
+        <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="">
             <FormContainer width="100%" formTitle="Create Blog">
               <Input
                 label="Blog Title *"
                 required
                 value={newBlog.title}
-                onChange={(e) =>
-                  setNewBlog((prev) => ({ ...prev, title: e.target.value }))
-                }
+                onChange={(e) => setNewBlog(prev => ({ ...prev, title: e.target.value }))}
               />
+              
               <TextArea
                 label="Blog Content *"
                 required
                 value={newBlog.content}
-                onChange={(e) =>
-                  setNewBlog((prev) => ({ ...prev, content: e.target.value }))
-                }
-              />
-              <Input
-                label="Category"
-                required
-                name="category"
-                value={newBlog.category}
-                onChange={(e) =>
-                  setNewBlog((prev) => ({ ...prev, category: e.target.value }))
-                }
+                onChange={(e) => setNewBlog(prev => ({ ...prev, content: e.target.value }))}
               />
 
               <div className="mt-4">
@@ -183,35 +166,36 @@ const BlogPage = () => {
                 )}
               </div>
 
-              <Button onClick={handleSaveBlog} text="Save Blog" variant="primary" size="medium" />
+              <div className="mt-6 flex justify-end gap-4">
+                <Button
+                  onClick={() => setIsAddBlogOpen(false)}
+                  text="Cancel"
+                  variant="secondary"
+                />
+                <Button
+                  onClick={handleSaveBlog}
+                  text="Publish Blog"
+                  variant="default"
+                />
+              </div>
             </FormContainer>
           </div>
         </div>
       )}
 
       {submitMessage && (
-        <div className="text-center mt-4 text-lg text-green-500">
+        <div className={`text-center p-4 mb-4 rounded-lg ${
+          submitMessage.includes("success") ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+        }`}>
           {submitMessage}
         </div>
       )}
-{/* 
-      <div className="flex flex-wrap justify-center sm:justify-start gap-4 mb-6">
-        {["all", "new", "latest", "popular"].map((cat) => (
-          <button
-            key={cat}
-            onClick={() => handleCategoryChange(cat)}
-            className={`px-4 py-2 rounded-lg shadow-md transition-all ${
-              category === cat
-                ? "bg-orange-500 text-white"
-                : "bg-gray-200 text-black hover:bg-gray-300"
-            }`}
-          >
-            {cat.charAt(0).toUpperCase() + cat.slice(1)}
-          </button>
-        ))}
-      </div> */}
 
-      <BlogCardContainer data={filteredBlogs} admin={true}  />
+      <BlogCardContainer 
+        data={filteredBlogs} 
+        admin={true} 
+        refreshData={fetchBlogs}
+      />
     </div>
   );
 };

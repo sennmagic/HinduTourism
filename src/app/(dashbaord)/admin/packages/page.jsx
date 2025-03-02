@@ -63,12 +63,14 @@ const PackageManager = () => {
       }
     }
   };
+
   return (
     <div className="max-w-7xl mx-auto p-4 md:p-6">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Manage Packages</h2>
         <Button
           text="Add Package"
+          variant="default"
           onClick={() => {
             setSelectedPackage({
               name: "",
@@ -111,7 +113,7 @@ const PackageManager = () => {
                     onClick={() => handlePackageDelete(pkg._id)}
                     className="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50"
                   >
-                    <FiTrash className="w-5 h-5" />
+                    <FiTrash className="w-5 h-5 text-red" />
                   </button>
                 </td>
               </tr>
@@ -124,6 +126,7 @@ const PackageManager = () => {
         <div className="fixed inset-0 bg-black/30 z-50 overflow-y-auto p-4">
           <div className="w-full max-w-3xl mx-auto">
             <FormContainer
+              width="5500px"
               title={selectedPackage?._id 
                 ? `Editing: ${selectedPackage.name}` 
                 : "Create New Package"}
@@ -179,7 +182,7 @@ const PackageManager = () => {
                       />
                     </div>
                     {selectedPackage?.includes?.map((item, index) => (
-                      <div key={index} className="flex gap-2 items-center">
+                      <div key={`include-${index}`} className="flex gap-2 items-center">
                         <Input
                           value={item}
                           onChange={(e) => {
@@ -221,7 +224,7 @@ const PackageManager = () => {
                       />
                     </div>
                     {selectedPackage?.excludes?.map((item, index) => (
-                      <div key={index} className="flex gap-2 items-center">
+                      <div key={`exclude-${index}`} className="flex gap-2 items-center">
                         <Input
                           value={item}
                           onChange={(e) => {
@@ -233,6 +236,18 @@ const PackageManager = () => {
                             }));
                           }}
                         />
+                        <button
+                          onClick={() => {
+                            const newExcludes = selectedPackage.excludes.filter((_, i) => i !== index);
+                            setSelectedPackage(prev => ({
+                              ...prev,
+                              excludes: newExcludes
+                            }));
+                          }}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          ×
+                        </button>
                       </div>
                     ))}
                   </div>

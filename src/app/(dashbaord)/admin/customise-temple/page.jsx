@@ -107,7 +107,9 @@ const TempleManager = () => {
         <h1 className="text-2xl font-bold text-gray-800">Manage Temples</h1>
         <Button
           text="Add Temple"
+              variant="default"
           onClick={() => {
+            
             setSelectedTemple({
               name: "",
               description: "",
@@ -158,7 +160,7 @@ const TempleManager = () => {
                     onClick={() => handleTempleDelete(temple._id)}
                     className="text-red-600 hover:text-red-800 p-2 rounded-lg hover:bg-red-50"
                   >
-                    <FiTrash className="w-5 h-5" />
+                    <FiTrash className="w-5 h-5 text-red" />
                   </button>
                 </td>
               </tr>
@@ -272,11 +274,12 @@ const TempleManager = () => {
                 <Button
                   text="Cancel"
                   onClick={() => setIsTempleOpen(false)}
-                  variant="outline"
+                  variant=""
                 />
                 <Button
                   text={selectedTemple?._id ? "Save Changes" : "Create Temple"}
                   onClick={handleTempleSubmit}
+                  variant="default"
                 />
               </div>
             </FormContainer>
