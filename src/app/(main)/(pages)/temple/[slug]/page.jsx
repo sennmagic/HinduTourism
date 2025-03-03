@@ -6,7 +6,7 @@ import InfoHeader from '@/components/atoms/TextHeadings/InfoHeader';
 import Breadcrumb from '@/components/atoms/BreadCrumb';
 import PremiumPackage from '@/components/services/PremiumPackage';
 import { fetchAPI } from '@/utils/apiService';
-
+import Link from 'next/link';
 const page = async ({ params }) => {
     const navItems = [
         { label: "Overview", id: "overview" },
@@ -31,6 +31,36 @@ const page = async ({ params }) => {
     };
     const backgroundImage = backgroundImages[templeData?.name] || "";
 
+    const trips = [
+        {
+            title: "Muktinath",
+            slug: "muktinath-temple",
+            description: "The gateway to salvation",
+            image: "/images/tripmuktinath.svg",
+        },
+        {
+            title: "Manakamana",
+            slug: "manakamana-temple",
+            description: "The temple of wishes",
+            image: "/images/manakamana.svg",
+        },
+        {
+            title: "Pashupatinath",
+            slug: "pashupatinath-temple",
+            description: "The holiest Hindu temple in Nepal",
+            image: "/images/pashupati.svg",
+        },
+        {
+            title: "Customize Your Trip",
+            slug: "customise-my-trip",
+            description: "You can add other temples to your trip.",
+            image: "/images/customizetrip.svg",
+        },
+    ];
+
+    // Filter out the current temple from the "Other Trips" section
+    const filteredTrips = trips.filter(trip => trip.slug !== templeData.slug);
+
     // Define dynamic reasons for each temple
     const reasonsMap = {
         "Pashupatinath Temple": [
@@ -48,11 +78,11 @@ const page = async ({ params }) => {
         "Manakamana Temple": [
             "Dedicated to Goddess Bhagwati, believed to grant wishes to devotees.",
             "Accessible via a scenic cable car ride, offering stunning views of the Himalayas.",
-            " A perfect blend of spirituality and adventure.",
-            " Why Visit? Seek divine blessings while enjoying a thrilling cable car ride over Nepal’s lush hills."
+            "A perfect blend of spirituality and adventure.",
+            "Seek divine blessings while enjoying a thrilling cable car ride over Nepal’s lush hills."
         ]
     };
-    
+
     const reasons = reasonsMap[templeData?.name] || ["No specific reasons available for this temple."];
 
     return (
@@ -81,6 +111,36 @@ const page = async ({ params }) => {
                 </div>
             </div>
             <PremiumPackage data={packageData} />
+
+            {/* Other Trips Section */}
+      
+        {/* Other Trips Section */}
+      {filteredTrips.length > 0 && (
+        <section className="max-w-7xl mx-auto px-6 my-spacer">
+          <div className="mb-10">
+            <TextHeader text="Other Trips :" specialWordsIndices="1" align="start" size="small" />
+          </div>
+          <div id="gallery" className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {filteredTrips.map((trip, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <Link href={`/${trip.slug}`}> {/* Fixed href and wrapped children */}
+                  <>
+                    <img 
+                      src={trip.image} 
+                      alt={trip.title} 
+                      className="w-full h-48 object-cover"
+                    />
+                    <div className="p-4">
+                      <h3 className="text-lg font-semibold">{trip.title}</h3>
+                      <p className="text-gray-600">{trip.description}</p>
+                    </div>
+                  </>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
         </>
     );
 };
