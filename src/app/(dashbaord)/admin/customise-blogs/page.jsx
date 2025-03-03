@@ -57,7 +57,7 @@ const BlogPage = () => {
     }
 
     const formData = new FormData();
-    formData.append("title", newBlog.title);
+    formData.append("name", newBlog.title);
     formData.append("content", newBlog.content);
     formData.append("author", newBlog.author);
     formData.append("category", newBlog.category);

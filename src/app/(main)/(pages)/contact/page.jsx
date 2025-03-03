@@ -35,20 +35,26 @@ const Contact = () => {
 
               {/* Social Links */}
               <div className="flex gap-6">
-                <Image 
+               <a href="https://www.facebook.com/share/1BYpz3GZ9G/?mibextid=wwXIfr">
+               <Image 
                   src="/images/facebookicon.svg" 
                   alt="Facebook" 
                   width={32}
                   height={32}
                   className="hover:opacity-75 transition-opacity"
                 />
-                <Image 
+               </a>
+               <a href="https://www.instagram.com/thehindutourism/">
+               
+               <Image 
                   src="/images/instaicon.svg" 
                   alt="Instagram" 
                   width={32}
                   height={32}
                   className="hover:opacity-75 transition-opacity"
                 />
+               </a>
+             
               </div>
             </div>
 

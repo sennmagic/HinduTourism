@@ -139,8 +139,11 @@ const Home = async ({params}) => {
                     Is this Heaven? <br />
                     <span className="italic">No, it’s <em>Nepal</em>.</span>
                   </h1>
+                  
+                 
                   <button className="mt-4 px-8 py-3 bg-orange-light text-white font-semibold hover:bg-orange-light transition duration-300 !rounded-none">
-                    Learn more about #Experience on Instagram
+                  <a href="https://www.instagram.com/thehindutourism/">                    Learn more about #Experience on Instagram
+                  </a>
                   </button>
                 </div>
               </div>

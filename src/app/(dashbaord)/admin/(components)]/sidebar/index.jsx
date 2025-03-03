@@ -47,7 +47,7 @@ const Sidebar = () => {
             { icon: FaTachometerAlt, text: "Dashboard", link: "/admin" },
             { icon: FaUsers, text: "Temples", link: "/admin/customise-temple" },
             { icon: FaWallet, text: "Blog Collection", link: "/admin/customise-blogs" },
-            { icon: FaChartLine, text: "Contact Form", link: "/contact-info" },
+            { icon: FaChartLine, text: "Contact Form", link: "/admin/contact-info" },
             { icon: FaBox, text: "Packages", link: "/admin/packages" },
             { icon: FaCog, text: "Settings", link: "/settings" },
           ].map(({ icon: Icon, text, link }, index) => (

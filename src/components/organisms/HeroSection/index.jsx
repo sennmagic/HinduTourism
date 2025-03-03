@@ -58,6 +58,7 @@ const HeroSection = () => {
   style={{
     height: "0px",
     border: "1px #F05A28 solid",
+   
   }}
   className="w-[120px] sm:w-[100px] md:w-[250px] lg:w-[281px]"
 ></div>
