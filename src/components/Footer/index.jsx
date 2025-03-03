@@ -29,7 +29,7 @@ const footerLinks = [
   {
     title: "More",
     links: [
-      { name: "T&C", href: "/termsandconditions" },
+      { name: "T&C", href: "/terms-conditions" },
       { name: "Privacy Policy", href: "/privacy-policy" },
     ],
   },
