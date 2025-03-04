@@ -23,6 +23,7 @@ export const fetchAPI = async (
       ...(accessToken && { Authorization: `JWT ${accessToken}` }),
     },
     ...(data && { body: isFormData ? data : JSON.stringify(data) }),
+    cache: "no-store",
   }
 
   try {

@@ -29,8 +29,7 @@ const AboutUs = () => {
               Adhiraj Regmi
               </div>
               <div className="text-[#3e3f41] text-sm font-normal font-['Inter'] leading-[21px]">
-                Founder & MD
-              </div>
+              Co Founder & MD              </div>
             </div>
           </div>
         </div>

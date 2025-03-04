@@ -10,7 +10,7 @@ const Showcase = ({ layout = "right", data }) => {
   const templeList = Array.isArray(data?.data) ? data.data : [];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-8 sm:px-6 lg:px-8 my-spacer overflow-hidden">
+    <div className="max-w-7xl mx-auto px-6 md:px-8 sm:px-6 lg:px-8 py-8 overflow-hidden">
       <div>
         <InfoHeader text="EXPLORE" />
         <TextHeader text=" Hindu tourism in Nepal:" size="small" align="start" specialWordsIndices="2 , 3" />

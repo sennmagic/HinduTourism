@@ -21,8 +21,8 @@ const footerLinks = [
     title: "Follow Us",
     links: [
       { name: "Facebook", href: "https://www.facebook.com/share/1BYpz3GZ9G/?mibextid=wwXIfr" },
-      { name: "Twitter", href: "#" },
-      { name: "LinkedIn", href: "#" },
+      { name: "Twitter", href: "https://www.linkedin.com/company/thehindutourism/about/?viewAsMember=true " },
+      { name: "LinkedIn", href: "https://x.com/thehindutourism" },
       { name: "Instagram", href: "https://www.instagram.com/thehindutourism/" },
     ],
   },

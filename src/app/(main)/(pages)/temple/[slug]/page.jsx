@@ -52,7 +52,7 @@ const page = async ({ params }) => {
         },
         {
             title: "Customize Your Trip",
-            slug: "customise-my-trip",
+            slug: "/customise-my-trip",
             description: "You can add other temples to your trip.",
             image: "/images/customizetrip.svg",
         },
@@ -123,7 +123,9 @@ const page = async ({ params }) => {
           <div id="gallery" className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {filteredTrips.map((trip, index) => (
               <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <Link href={`/${trip.slug}`}> {/* Fixed href and wrapped children */}
+                     <Link href={trip.slug === "/customise-my-trip" ? "/customise-my-trip" : `/temple/${trip.slug}`}>
+
+
                   <>
                     <img 
                       src={trip.image} 
@@ -131,7 +133,7 @@ const page = async ({ params }) => {
                       className="w-full h-48 object-cover"
                     />
                     <div className="p-4">
-                      <h3 className="text-lg font-semibold">{trip.title}</h3>
+                    <h3 className="text-lg font-semibold">{trip.title}</h3>
                       <p className="text-gray-600">{trip.description}</p>
                     </div>
                   </>

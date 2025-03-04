@@ -1,14 +1,25 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Button from "@/components/atoms/Button";
 import Link from "next/link";
 import useScrollSpy from "@/hooks/useScrollSpy";
 
 const Midnavbar = ({ isMenuOpen, navItems }) => {
   const { activeSection, scrollToSection } = useScrollSpy(navItems);
+  const navRef = useRef(null);
+
+  // Scroll to Midnavbar on page load
+  useEffect(() => {
+    if (navRef.current) {
+      setTimeout(() => {
+        navRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100); // Delay to ensure the component is fully rendered before scrolling
+    }
+  }, []);
 
   return (
     <nav
+      ref={navRef}
       className={`fixed bottom-0 left-0 w-full bg-[#fcfaf1] shadow-md transition-all duration-300 z-50 md:sticky md:top-20 ${
         isMenuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
