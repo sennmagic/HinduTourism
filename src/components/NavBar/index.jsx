@@ -60,7 +60,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto h-[98px] px-6 py-3 flex justify-between items-center">
         <div className="w-[98px] h-[74px] flex justify-center items-center">
           <Link href="/">
-            <img className="w-full h-full cursor-pointer" src="/images/Logo.svg" alt="Logo" />
+            <img className="w-[600px] h-[100px] cursor-pointer" src="/images/logoimage.png" alt="Logo" />
           </Link>
         </div>
 
