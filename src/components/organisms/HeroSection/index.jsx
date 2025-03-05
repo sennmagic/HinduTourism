@@ -64,7 +64,7 @@ const HeroSection = () => {
 ></div>
 
           </em>{" "}
-          in Nepal
+          in Nepal  
       </span>
       </div>
 
@@ -73,54 +73,16 @@ const HeroSection = () => {
 
       {/* Hero Image Section with Hover Effect */}
       <div className="relative ">
-        <motion.div
-          className="relative"
-          onHoverStart={() => setHovered(true)}
-          onHoverEnd={() => setHovered(false)}
-        >
-          {/* Default Hero Image */}
-          <motion.div
-            initial={{ opacity: 1 }}
-            animate={{ opacity: hovered ? 0 : 1 }}
-            transition={{
-              duration: 0.3, // Slightly slower hover transition (0.3 seconds)
-              ease: "easeInOut",
-            }}
-          >
-            <Image
-              src="/images/heroimagedark.svg"
-              alt="Hero Banner"
-              layout="responsive"
-              width={10}
-              height={200}
-              className="object-cover w-full h-auto"
-              priority
-
-            />
-          </motion.div>
-
-          {/* Hover Hero Image */}
-          <motion.div
-            initial={{ opacity: 0 }}  
-            animate={{ opacity: hovered ? 1 : 0 }}
-            transition={{
-              duration: 0.6, // Slightly slower hover transition (0.6 seconds)
-              ease: "easeInOut",
-            }}
-            className="absolute inset-0"
-          >
-            <Image
+      <Image
               src="/images/heroimage1.svg"
               alt="Hero Banner"
               layout="responsive"
               width={10}
               height={200}
+           
               className="object-cover w-full h-auto"
               priority
             />
-          </motion.div>
-        </motion.div>
-
         {/* Bottom  */}
       
       </div>
