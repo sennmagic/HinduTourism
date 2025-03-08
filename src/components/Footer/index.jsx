@@ -21,8 +21,8 @@ const footerLinks = [
     title: "Follow Us",
     links: [
       { name: "Facebook", href: "https://www.facebook.com/share/1BYpz3GZ9G/?mibextid=wwXIfr" },
-      { name: "Twitter", href: "https://www.linkedin.com/company/thehindutourism/about/?viewAsMember=true " },
-      { name: "LinkedIn", href: "https://x.com/thehindutourism" },
+      { name: "Twitter", href: "https://x.com/thehindutourism " },
+      { name: "LinkedIn", href: " https://www.linkedin.com/company/thehindutourism/about/?viewAsMember=true" },
       { name: "Instagram", href: "https://www.instagram.com/thehindutourism/" },
     ],
   },
@@ -116,7 +116,10 @@ const Footer = () => {
                   Crafted by:
                 </span>
                 <span className="text-stone-800 text-xs font-bold leading-none tracking-tight">
-                  Lishnu Tech Pvt. Ltd.
+                 <a href="https://lishnutech.com/">
+                 Lishnu Tech Pvt. Ltd.
+                 
+                 </a> 
                 </span>
               </div>
             </div>

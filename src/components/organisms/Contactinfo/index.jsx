@@ -13,8 +13,8 @@ const ContactInfo = () => {
             Connect for Trips & Information
           </div>
           <div className="text-stone-800 text-sm font-semibold leading-tight">
-            +91 8375094215 (India) <br />
-            +977 9801234567 (Nepal)
+            +91 8375094215
+       
           </div>
         </div>
       </div>

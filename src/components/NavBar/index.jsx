@@ -13,8 +13,9 @@ const Navbar = () => {
 
   const navMenuData = [
     { label: "PASHUPATINATH", url: "/temple/pashupatinath-temple" },
-    { label: "MANAKAMANA", url: "/temple/manakamana-temple" },
     { label: "MUKTINATH", url: "/temple/muktinath-temple" },
+
+    { label: "MANAKAMANA", url: "/temple/manakamana-temple" },
     { label: "BLOG", url: "/blogs" },
     { label: "ABOUT US", url: "/about" },
     { label: "CONTACT", url: "/contact" },
@@ -118,7 +119,6 @@ const Navbar = () => {
         </div>
       )}
 
-      <div id="google_translate_element" style={{ display: 'none' }}></div>
     </div>
   );
 };

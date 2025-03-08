@@ -6,6 +6,7 @@ import InfoHeader from '@/components/atoms/TextHeadings/InfoHeader';
 import Breadcrumb from '@/components/atoms/BreadCrumb';
 import PremiumPackage from '@/components/services/PremiumPackage';
 import { fetchAPI } from '@/utils/apiService';
+import Showcase from '@/components/tempelates/Fullshowcase';
 import Link from 'next/link';
 const page = async ({ params }) => {
     const navItems = [
@@ -88,7 +89,7 @@ const page = async ({ params }) => {
     return (
         <>
             <Breadcrumb currentnavlink={templeData.slug} />
-            <HeaderBanner title={templeData?.name || "Temple"} backgroundImage={backgroundImage} />
+            <HeaderBanner  backgroundImage={backgroundImage} />
             <Midnavbar navItems={navItems} />
             <div id="overview" className="py-16 mx-auto max-w-7xl px-6 flex flex-col gap-12">
                 <TextHeader text={templeData?.name} color="orange.light" align="start" />
@@ -114,7 +115,7 @@ const page = async ({ params }) => {
 
             {/* Other Trips Section */}
       
-        {/* Other Trips Section */}
+        {/* Other Trips Section
       {filteredTrips.length > 0 && (
         <section className="max-w-7xl mx-auto px-6 my-spacer">
           <div className="mb-10">
@@ -141,8 +142,9 @@ const page = async ({ params }) => {
               </div>
             ))}
           </div>
-        </section>
-      )}
+        </section> */}
+      {/* )} */}
+      <Showcase />
         </>
     );
 };
