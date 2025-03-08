@@ -96,7 +96,7 @@ const page = async ({ params }) => {
                 <p className="w-full sm:w-[824px] text-[#2b2727] text-base sm:text-lg font-normal leading-normal">
                     {templeData?.description || "No description available."}
                 </p>
-                <div className="py-12 flex-col gap-10 inline-flex rounded-xl">
+                <div className=" flex-col gap-10 inline-flex rounded-xl">
                     <div className="w-full h-px border-2 border-[#efeee8] rounded-full mb-4"></div>
                     <div className="flex-col justify-start items-start gap-4 flex">
                         <InfoHeader text="Why You Should Visit?" />
