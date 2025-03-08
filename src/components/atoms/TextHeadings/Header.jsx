@@ -28,7 +28,7 @@ const TextHeader = ({
   const sizeStyles = {
     large: "text-6xl md:text-7xl lg:text-7xl",
     medium: "text-5xl md:text-6xl lg:text-6xl",
-    small: "text-4xl md:text-5xl lg:text-5xl",
+    small: "text-3xl md:text-5xl lg:text-5xl",
     xsmall: "text-2xl md:text-3xl lg:text-4xl",
   };
 
