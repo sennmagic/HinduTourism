@@ -38,13 +38,12 @@ const footerLinks = [
 const Footer = () => {
   return (
     <>
-      {/* Top Section */}
-      <div className="w-full max-h-[400px] bg-[#FFFBE7] flex flex-col justify-center items-center gap-5 px-6 md:py-20 lg:py-28 lg:px-20 xl:px-32 text-center">
-        <div>
+      <div className="bg-[#fffbe7] pt-20 px-10 flex flex-col items-center gap-6">
+ <div>
           <TextHeader 
             text="Your journey to peace starts here." 
             size="small" 
-            specialWordsIndices="4" 
+            specialWordsIndices="5" 
             className="!font-normal" 
           />
         </div>
@@ -52,17 +51,10 @@ const Footer = () => {
           <Button text="Plan it today" variant="default" />
         </Link>
 
-        {/* Illustration Image */}
-        <div className="relative w-full max-w-md h-[200px] lg:h-[250px] flex justify-center items-end top-[110px]">
-          <Image
-            src="/images/footerimage.svg"
-            alt="Illustration"
-            width={400}
-            height={400}
-            className="object-contain absolute"
-          />
-        </div>
-      </div>
+
+  <img className="w-[474px] h-[107px]" src="/images/footerimage.svg" alt="Placeholder" />
+</div>
+  
 
       {/* Footer Section */}
       <footer className="max-w-7xl mx-auto px-6">
