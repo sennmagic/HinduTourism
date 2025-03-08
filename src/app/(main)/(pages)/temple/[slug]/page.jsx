@@ -14,7 +14,7 @@ const page = async ({ params }) => {
         { label: "Premium Package", id: "premium-package" },
         { label: "Deluxe Package", id: "deluxe-package" },
         { label: "Exclusive Package", id: "exclusive-package" },
-        { label: "Other trips", id: "gallery" },
+        { label: "Gallery ", id: "gallery" },
     ];
 
     // Fetch temple data
@@ -144,7 +144,10 @@ const page = async ({ params }) => {
           </div>
         </section> */}
       {/* )} */}
-      <Showcase />
+<div id='gallery' className="">
+
+<Showcase  />
+</div>
         </>
     );
 };

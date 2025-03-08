@@ -69,7 +69,7 @@ const Footer = () => {
         <div className="py-24 flex flex-wrap justify-between gap-y-6 gap-x-9 md:h-96 h-10">
           {/* Logo Section */}
           <div className="w-36 h-28 flex justify-center items-center mx-auto md:mx-0">
-            <img className="w-36 h-28" src="/images/Logo.svg" alt="Logo" />
+            <img className="w-32 h-30" src="/images/Logo.svg" alt="Logo" />
           </div>
 
           {/* Contact Info */}

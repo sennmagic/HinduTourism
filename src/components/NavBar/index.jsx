@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Button from "../atoms/Button";
 import Link from "next/link";
 import Flag from 'react-world-flags';
-import { FaCaretDown,   FaBars, FaTimes } from 'react-icons/fa';
+import { FaCaretDown, FaBars, FaTimes } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +14,6 @@ const Navbar = () => {
   const navMenuData = [
     { label: "PASHUPATINATH", url: "/temple/pashupatinath-temple" },
     { label: "MUKTINATH", url: "/temple/muktinath-temple" },
-
     { label: "MANAKAMANA", url: "/temple/manakamana-temple" },
     { label: "BLOG", url: "/blogs" },
     { label: "ABOUT US", url: "/about" },
@@ -78,15 +77,16 @@ const Navbar = () => {
             <img src="/images/whatsapp.svg" alt="WhatsApp" className="w-6 h-6" />
           </div>
 
+          {/* Language Switcher */}
           <div className="relative">
             <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-2 p-2 rounded-full">
-              <Flag code={language === 'en' ? 'US' : 'IN'} style={{ width: 30, height: 20 }} />
+              <Flag code={language === 'en' ? 'GB' : 'IN'} style={{ width: 30, height: 20 }} />
               <FaCaretDown className="text-xl" />
             </button>
             {dropdownOpen && (
               <div className="absolute top-10 right-0 bg-white border shadow-lg rounded-md py-2">
                 <button onClick={() => { changeLanguage('en'); setDropdownOpen(false); }} className="flex items-center gap-2 p-2 w-40 hover:bg-gray-100">
-                  <Flag code="US" style={{ width: 20, height: 15 }} />
+                  <Flag code="GB" style={{ width: 20, height: 15 }} />
                   <span>English</span>
                 </button>
                 <button onClick={() => { changeLanguage('hi'); setDropdownOpen(false); }} className="flex items-center gap-2 p-2 w-40 hover:bg-gray-100">
@@ -97,18 +97,21 @@ const Navbar = () => {
             )}
           </div>
 
+          {/* WhatsApp Button */}
           <div className="hidden md:flex">
             <a href="https://wa.me/9779851354589" target="_blank" rel="noopener noreferrer">
               <Button leftIcon={"/images/whatsapp.svg"} size="medium" text="+918375094215" variant="default" />
             </a>
           </div>
 
+          {/* Mobile Menu Toggle */}
           <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden text-2xl">
             {isMenuOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </div>
 
+      {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white shadow-lg absolute w-full top-[98px] left-0 right-0 px-6 py-4 flex flex-col gap-4">
           {navMenuData.map((menu, index) => (
@@ -118,7 +121,6 @@ const Navbar = () => {
           ))}
         </div>
       )}
-
     </div>
   );
 };

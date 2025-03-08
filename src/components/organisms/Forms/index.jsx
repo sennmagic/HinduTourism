@@ -1,10 +1,12 @@
+
 "use client"
 
 import React, { useState, useRef, useEffect } from "react";
 import Button from "@/components/atoms/Button";
 import Input from "@/components/atoms/Fields/InputFields";
-import TextArea from "@/components/atoms/Fields/TextArea";
+import TextArea from "@/components/atoms/Fields/TextArea"; // Assuming TextArea component is available
 
+// FormContainer: Handles layout and structure
 export const FormContainer = ({
   primaryButton,
   secondaryButton,
@@ -15,12 +17,14 @@ export const FormContainer = ({
   padding = "30px",
   children,
   onSubmit,
-  onClose,
+  onClose, // Pass a function to close the formrn
 }) => {
   const formRef = useRef(null);
 
+  // Close form when clicking outside
+
   return (
-    <form onSubmit={onSubmit}>
+    <form>
       <div className="flex flex-col items-center">
         <div
           ref={formRef}
@@ -35,10 +39,14 @@ export const FormContainer = ({
                 {formTitle}
               </h2>
             )}
+           
           </div>
+
+          {/* Render fields from children */}
           {children}
         </div>
 
+        {/* Render buttons if provided */}
         {(primaryButton || secondaryButton) && (
           <div
             className={`flex mt-6 ${
@@ -47,11 +55,11 @@ export const FormContainer = ({
           >
             {primaryButton && (
               <Button
-                type="submit"
                 text={primaryButton}
                 variant="default"
                 color="orangeborder"
                 size="medium"
+                onClick={onPrimaryClick}
                 className="mr-auto"
               />
             )}
@@ -70,6 +78,7 @@ export const FormContainer = ({
   );
 };
 
+// Form: Handles form field rendering and data passing
 const Form = ({
   primaryButton,
   secondaryButton,
@@ -82,55 +91,57 @@ const Form = ({
   padding,
 }) => {
   const [isFormVisible, setIsFormVisible] = useState(true);
-  const [validFields, setValidFields] = useState({});
-  const [forceValidate, setForceValidate] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const allValid = Object.values(validFields).every(Boolean);
-    
-    if (allValid) {
-      onPrimaryClick?.();
-      onSubmit?.(e);
-    } else {
-      setForceValidate(true);
-    }
+  const closeForm = () => {
+    setIsFormVisible(false);
   };
-
-  const closeForm = () => setIsFormVisible(false);
 
   return (
     isFormVisible && (
       <FormContainer
         primaryButton={primaryButton}
         secondaryButton={secondaryButton}
+        onPrimaryClick={onPrimaryClick}
         onSecondaryClick={onSecondaryClick}
         formTitle={formTitle}
         width={width}
         padding={padding}
-        onSubmit={handleSubmit}
+        onSubmit={onSubmit}
         onClose={closeForm}
       >
+        {/* Render fields dynamically */}
         {fields?.map((field, index) => {
-          const commonProps = {
-            key: index,
-            label: field.label,
-            name: field.name,
-            placeholder: field.placeholder,
-            required: field.required,
-            forceValidation,
-            onValidityChange: (name, isValid) => {
-              setValidFields(prev => ({ ...prev, [name]: isValid }));
-            },
-          };
-
           if (field.type === "textarea") {
-            return <TextArea {...commonProps} />;
+            return (
+              <TextArea
+                key={index}
+                label={field.label}
+                placeholder={field.placeholder}
+                name={field.name}
+              />
+            );
+          } else if (field.type === "select") {
+            return (
+              <Input
+                key={index}
+                label={field.label}
+                type="select"
+                placeholder={field.placeholder}
+                options={field.options}
+                name={field.name}
+              />
+            );
+          } else {
+            return (
+              <Input
+                key={index}
+                label={field.label}
+                type={field.type || "text"}
+                placeholder={field.placeholder}
+                name={field.name}
+              />
+            );
           }
-          if (field.type === "select") {
-            return <Input {...commonProps} type="select" options={field.options} />;
-          }
-          return <Input {...commonProps} type={field.type || "text"} />;
         })}
       </FormContainer>
     )
@@ -138,3 +149,4 @@ const Form = ({
 };
 
 export default Form;
+ 
