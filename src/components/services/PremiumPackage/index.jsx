@@ -10,7 +10,7 @@ const Premiumpackage = ({ data=[] }) => {
   const sectionRefs = useRef({});
 
   return (
-    <div className="w-full max-w-7xl px-6 my-spacer mx-auto flex flex-col h-full gap-36 pb-30">
+    <div className="w-full max-w-7xl px-6 my-spacer mx-auto flex flex-col h-full gap-12 ">
       {packagedata?.map((pkg, idx) => (
         <div
           key={pkg._id}

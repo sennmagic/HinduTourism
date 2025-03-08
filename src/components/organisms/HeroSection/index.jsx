@@ -61,7 +61,7 @@ const HeroSection = () => {
         />
         
         {/* Bottom Shadow Effect */}
-        <div className="absolute bottom-0 left-0 w-full h-[150px] bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
+        
       </div>
 
       {/* Spacing between Image and Temples */}

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import InfoHeader from '@/components/atoms/TextHeadings/InfoHeader';
 import TextHeader from '@/components/atoms/TextHeadings/Header';
@@ -7,6 +6,7 @@ import Faq from '@/components/organisms/FAQ';
 import Image from 'next/image';
 import Contactinfo from '@/components/organisms/Contactinfo';
 import Breadcrumb from '@/components/atoms/BreadCrumb';
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 const Contact = () => {
   return (
@@ -35,26 +35,18 @@ const Contact = () => {
 
               {/* Social Links */}
               <div className="flex gap-6">
-               <a href="https://www.facebook.com/share/1BYpz3GZ9G/?mibextid=wwXIfr">
-               <Image 
-                  src="/images/facebookicon.svg" 
-                  alt="Facebook" 
-                  width={32}
-                  height={32}
-                  className="hover:opacity-75 transition-opacity"
-                />
-               </a>
-               <a href="https://www.instagram.com/thehindutourism/">
-               
-               <Image 
-                  src="/images/instaicon.svg" 
-                  alt="Instagram" 
-                  width={32}
-                  height={32}
-                  className="hover:opacity-75 transition-opacity"
-                />
-               </a>
-             
+                <a href="https://www.facebook.com/share/1BYpz3GZ9G/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                  <FaFacebook className="text-2xl hover:opacity-75 transition-opacity" />
+                </a>
+                <a href="https://www.instagram.com/thehindutourism/" target="_blank" rel="noopener noreferrer">
+                  <FaInstagram className="text-2xl hover:opacity-75 transition-opacity" />
+                </a>
+                <a href="https://x.com/thehindutourism" target="_blank" rel="noopener noreferrer">
+                  <FaTwitter className="text-2xl hover:opacity-75 transition-opacity" />
+                </a>
+                <a href="https://www.linkedin.com/company/thehindutourism/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedin className="text-2xl hover:opacity-75 transition-opacity" />
+                </a>
               </div>
             </div>
 
@@ -66,16 +58,16 @@ const Contact = () => {
 
           {/* Map Section */}
           <div className="mb-24">
-          <iframe
-  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.0039424666134!2d77.05220729999999!3d28.4191379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d2363688d01cf%3A0x78d636715d9fbf63!2sArcadia%20Market!5e0!3m2!1sen!2snp!4v1740742177281!5m2!1sen!2snp"
-  width="100%"
-  height="450"
-  style={{ border: 0 }}
-  allowFullScreen=""
-  loading="lazy"
-  referrerPolicy="no-referrer-when-downgrade"
-  className="rounded-lg shadow-lg"
-></iframe>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3509.0039424666134!2d77.05220729999999!3d28.4191379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d2363688d01cf%3A0x78d636715d9fbf63!2sArcadia%20Market!5e0!3m2!1sen!2snp!4v1740742177281!5m2!1sen!2snp"
+              width="100%"
+              height="450"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="rounded-lg shadow-lg"
+            ></iframe>
           </div>
         </div>
 

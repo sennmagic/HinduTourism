@@ -53,10 +53,7 @@ const FAQSection = () => {
       question: "What are the top 3 must-visit temples in Nepal for Hindu pilgrims?",
       answer: "The most revered and popular temples are Pashupatinath Temple (dedicated to Lord Shiva), Manakamana Temple (dedicated to Goddess Durga), and Muktinath Temple (dedicated to Lord Vishnu). These are considered essential pilgrimage sites."
     },
-    {
-      question: "What other significant temples can I visit in Nepal?",
-      answer: "" // You can add content here.
-    },
+
     // Add any other FAQ items here...
   ];
   

@@ -10,19 +10,25 @@ const footerLinks = [
     title: "Explore",
     links: [
       { name: "About", href: "/about" },
-    { name: "Pashupatinath", href: "/temple/pashupatinath-temple" },
+      { name: "Pashupatinath", href: "/temple/pashupatinath-temple" },
       { name: "Muktinath", href: "/temple/muktinath-temple" },
       { name: "Manakamana", href: "/temple/manakamana-temple" },
-      { name: "Blog", href: "/blog" },
+      { name: "Blog", href: "/blogs" },
       { name: "Contact", href: "/contact" },
     ],
   },
   {
     title: "Follow Us",
     links: [
-      { name: "Facebook", href: "https://www.facebook.com/share/1BYpz3GZ9G/?mibextid=wwXIfr" },
-      { name: "Twitter", href: "https://x.com/thehindutourism " },
-      { name: "LinkedIn", href: " https://www.linkedin.com/company/thehindutourism/about/?viewAsMember=true" },
+      {
+        name: "Facebook",
+        href: "https://www.facebook.com/share/1BYpz3GZ9G/?mibextid=wwXIfr",
+      },
+      { name: "Twitter", href: "https://x.com/thehindutourism" },
+      {
+        name: "LinkedIn",
+        href: "https://www.linkedin.com/company/thehindutourism/about/?viewAsMember=true",
+      },
       { name: "Instagram", href: "https://www.instagram.com/thehindutourism/" },
     ],
   },
@@ -39,22 +45,24 @@ const Footer = () => {
   return (
     <>
       <div className="bg-[#fffbe7] pt-20 px-10 flex flex-col items-center gap-6">
- <div>
-          <TextHeader 
-            text="Your journey to peace starts here." 
-            size="small" 
-            specialWordsIndices="5" 
-            className="!font-normal" 
+        <div>
+          <TextHeader
+            text="Your journey to peace starts here."
+            size="small"
+            specialWordsIndices="5"
+            className="!font-normal"
           />
         </div>
         <Link href="/customise-my-trip">
           <Button text="Plan it today" variant="default" />
         </Link>
 
-
-  <img className="w-[474px] h-[107px]" src="/images/footerimage.svg" alt="Placeholder" />
-</div>
-  
+        <img
+          className="w-[474px] h-[107px]"
+          src="/images/footerimage.svg"
+          alt="Placeholder"
+        />
+      </div>
 
       {/* Footer Section */}
       <footer className="max-w-7xl mx-auto px-6">
@@ -108,10 +116,7 @@ const Footer = () => {
                   Crafted by:
                 </span>
                 <span className="text-stone-800 text-xs font-bold leading-none tracking-tight">
-                 <a href="https://lishnutech.com/">
-                 Lishnu Tech Pvt. Ltd.
-                 
-                 </a> 
+                  <a href="https://lishnutech.com/">Lishnu Tech Pvt. Ltd.</a>
                 </span>
               </div>
             </div>
