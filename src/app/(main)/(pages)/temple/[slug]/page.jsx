@@ -91,7 +91,7 @@ const page = async ({ params }) => {
             <Breadcrumb currentnavlink={templeData.slug} />
             <HeaderBanner  backgroundImage={backgroundImage} />
             <Midnavbar navItems={navItems} />
-            <div id="overview" className="py-16 mx-auto max-w-7xl px-6 flex flex-col gap-12">
+            <div id="overview" className="my-spacer mx-auto max-w-7xl px-6 flex flex-col gap-12">
                 <TextHeader text={templeData?.name} color="orange.light" align="start" />
                 <p className="w-full sm:w-[824px] text-[#2b2727] text-base sm:text-lg font-normal leading-normal">
                     {templeData?.description || "No description available."}
