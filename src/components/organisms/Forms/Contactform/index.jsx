@@ -95,7 +95,7 @@ const ContactForm = ({
           label="Phone Number"
           required
           placeholder="Your Phone Number"
-          prefix="+977"
+          prefix="+91"
           value={formData.phone}
           onChange={(e) => handleChange("phone", e.target.value)}
         />

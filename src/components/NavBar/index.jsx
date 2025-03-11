@@ -96,14 +96,14 @@ const Navbar = () => {
 
           {/* WhatsApp Button (Desktop) */}
           <div className="hidden md:flex">
-            <a href="https://wa.me/9779851354589" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/918375094215" target="_blank" rel="noopener noreferrer">
               <Button leftIcon={"/images/whatsapp.svg"} size="medium" text="+918375094215" variant="default" />
             </a>
           </div>
 
           {/* WhatsApp Icon (Mobile) */}
           <div className="md:hidden">
-            <a href="https://wa.me/9779851354589" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/918375094215" target="_blank" rel="noopener noreferrer">
               <FaWhatsapp className="text-green-500 text-3xl" />
             </a>
           </div>
