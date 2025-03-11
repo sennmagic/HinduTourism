@@ -10,7 +10,7 @@ const Premiumpackage = ({ data=[] }) => {
   const sectionRefs = useRef({});
 
   return (
-    <div className="w-full max-w-7xl px-6 my-spacer mx-auto flex flex-col h-full md:gap-12 gap-4 ">
+    <div className="w-full max-w-7xl px-6 md:wmy-spacer mx-auto flex flex-col h-full md:gap-12  ">
       {packagedata?.map((pkg, idx) => (
         <div
           key={pkg._id}
@@ -48,8 +48,8 @@ const Premiumpackage = ({ data=[] }) => {
           </div>
 
           
-          <div className="flex-1 flex flex-col gap-10 pr-6">
-            <div className="space-y-8">
+          <div className="flex-1 flex flex-col gap-2 pr-6">
+            <div className="space-y-6">
           
               <div className="flex flex-col gap-8">
                 {pkg.itinerary.length > 0 ? (
@@ -63,7 +63,7 @@ const Premiumpackage = ({ data=[] }) => {
             </div>
 
             {/* Cost Details Section */}
-            <div className="space-y-8">
+            <div className="space-y-6">
               <InfoHeader text="Cost details" />
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-1 p-6 bg-[#edffe9] rounded-lg shadow-lg space-y-4">

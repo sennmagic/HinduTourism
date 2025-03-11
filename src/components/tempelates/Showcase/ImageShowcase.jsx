@@ -10,10 +10,10 @@ const contentList = [
     ctaText: "Know More",
     buttonlink:"pashupatinath-temple" ,
     images: [
-      "/images/pashupati.svg",
-      "/images/funeral.svg",
-      "/images/aarati.svg",
-      "/images/jogi.svg",
+      "/images/pashupatiop.jpg",
+      "/images/aaratiop.jpg",
+      "/images/hindu2.jpg",
+      "/images/jogi.jpg",
     ],
   },
   {
@@ -26,9 +26,9 @@ const contentList = [
     buttonlink:"pashupatinath-temple" ,
     images: [
       "/images/muktinath.svg",
-      "/images/water.svg",
-      "/images/tilicho.svg",
-      "/images/muktinathbike.svg",
+      "/images/hindu5.jpg",
+      "/images/hindu6.jpg",
+      "/images/hindu4.jpg",
     ],
   },
   {
@@ -40,10 +40,10 @@ const contentList = [
     ctaText: "Know More",
     buttonlink:"pashupatinath-temple" ,
     images: [
-      "/images/manakamana.svg",
-      "/images/cablecar.svg",
-      "/images/manakamanagate.svg",
-      "/images/viewmankamana.svg",
+      "/images/manak.jpg ",
+      "/images/hindu7.jpg",
+      "/images/hindu8.jpg",
+      "/images/hindu9.jpg",
     ],
   },
 ];
