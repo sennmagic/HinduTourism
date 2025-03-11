@@ -10,7 +10,7 @@ const HeroSection = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % texts.length);
-    }, 2000);
+    }, 1200); // Faster text switching
     return () => clearInterval(timer);
   }, []);
 
@@ -19,14 +19,14 @@ const HeroSection = () => {
       {/* Hero Text Section */}
       <div className="text-center pt-[40px]">
         <div className="relative h-[60px] overflow-hidden mb-6">
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.9 }}
-              transition={{ duration: 1, ease: "easeInOut" }}
-              className="absolute nt-[Qasira] top-0 left-0 w-full text-[36px] sm:text-[18px] md:text-[48px] leading-[72px] font-semibold text-orange-light"
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.5, ease: "easeOut" }} // Faster transition
+              className="absolute top-0 left-0 w-full text-[36px] sm:text-[18px] md:text-[48px] leading-[72px] font-semibold text-orange-light"
             >
               {texts[currentIndex]}
             </motion.div>
@@ -34,15 +34,14 @@ const HeroSection = () => {
         </div>
 
         <span className="text-[20px] sm:text-[30px] md:text-[40px] leading-[48px] text-gray-700 tracking-[-0.5px] text-center font-thin">
-  Explore the{" "}
-  <em className="font-thin italic relative inline-block">
-    <span className="relative text-gray-600 before:absolute before:left-0 before:bottom-[-2px] before:w-full before:h-[1px] before:bg-gradient-to-r before:from-orange-500 before:via-orange-400 before:to-orange-300">
-      holy sanctuaries
-    </span>
-  </em>{" "}
-  in Nepal
-</span>
-
+          Explore the{" "}
+          <em className="font-thin italic relative inline-block">
+            <span className="relative text-gray-600 before:absolute before:left-0 before:bottom-[-2px] before:w-full before:h-[1px] before:bg-gradient-to-r before:from-orange-500 before:via-orange-400 before:to-orange-300">
+              holy sanctuaries
+            </span>
+          </em>{" "}
+          in Nepal
+        </span>
       </div>
 
       {/* Spacing between Hero Text and Image */}
@@ -59,9 +58,6 @@ const HeroSection = () => {
           className="object-cover w-full h-auto"
           priority
         />
-        
-        {/* Bottom Shadow Effect */}
-        
       </div>
 
       {/* Spacing between Image and Temples */}
