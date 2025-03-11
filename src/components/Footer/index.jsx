@@ -66,7 +66,7 @@ const Footer = () => {
 
       {/* Footer Section */}
       <footer className="max-w-7xl mx-auto px-6">
-        <div className="md:py-24 py-12 flex flex-wrap justify-between gap-y-6 gap-x-9 md:h-96 h-10">
+        <div className="md:py-24 py-0 flex flex-wrap justify-between gap-y-6 gap-x-9 md:h-96 md:h-10 h-4">
           {/* Logo Section */}
           <div className="w-36 h-28 flex justify-center items-center mx-auto md:mx-0">
             <img className="w-32 h-30" src="/images/logoimage.png" alt="Logo" />

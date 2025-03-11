@@ -40,14 +40,14 @@ const Testimonial = () => {
   return (
     <div className=" overflow-hidden mb-24">
       {/* Header Section */}
-      <div className=" flex flex-col items-start gap-9">
+      <div className=" flex flex-col items-start gap-4">
         <div className="self-stretch flex flex-col items-start gap-2">
      
         </div>
 
         {/* Marquee Section */}
         <Marquee speed={30} gradient={false}>
-          <div className="flex ga p-9">
+          <div className="flex gap-9">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}

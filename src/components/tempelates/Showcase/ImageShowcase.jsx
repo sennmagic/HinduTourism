@@ -60,7 +60,7 @@ const ImageShowcase = ({ title }) => {
       <div className="mb-4 group relative">
         <Image
           src={content.images[0]}
-          alt={`${content.title} main image`}
+          alt={`${content.title} main image`}e
           width={672}
           height={290}
           layout="responsive"
