@@ -1,47 +1,66 @@
-'use client'; 
-import { useState, useEffect } from 'react'; 
+'use client';
+import { useState, useEffect } from 'react';
 import React from 'react';
 
 const GoToTop = () => {
   const [showGoToTop, setShowGoToTop] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setShowGoToTop(true);
-      } else {
-      setShowGoToTop(false);
-      }
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Detect mobile screens
     };
 
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      setShowGoToTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll);
+
+    handleResize(); // Check on mount
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <div>
       {showGoToTop && (
-        <button
-          onClick={scrollToTop}
-          className={`max-w-7xl mx-auto fixed bottom-8 right-10 bg-red-900 text-white p-3 rounded-full shadow-xl hover:bg-red-500 transition-opacity duration-300 ${showGoToTop ? 'opacity-100' : 'opacity-0 pointer-events-none'} z-50`}
-        >
-          <div className="w-12 h-12 absolute left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2 bg-orange-50 rounded-full shadow-[0px_4px_12px_0px_rgba(0,0,0,0.25)] border border-orange-600">
-            <img
-              src="/images/arrowup.svg"
-              className="w-6 h-6 absolute left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2 rotate-30"
-              alt="Scroll to Top"
-            />
-          </div>
-        </button>
+        <>
+          {/* Desktop Go To Top Button */}
+          {!isMobile && (
+            <button
+              onClick={scrollToTop}
+              className="fixed bottom-8 right-10 bg-red-900 text-white p-3 rounded-full shadow-xl hover:bg-red-500 transition-opacity duration-300 opacity-100 z-50 animate-fadeIn"
+            >
+              <div className="w-12 h-12 flex items-center justify-center bg-orange-50 rounded-full shadow-md border border-orange-600">
+                <img src="/images/arrowup.svg" className="w-6 h-6 rotate-0" alt="Scroll to Top" />
+              </div>
+            </button>
+          )}
+
+          {/* Mobile WhatsApp Floating Button */}
+          {isMobile && (
+            <a
+              href="https://wa.me/1234567890" // Replace with your WhatsApp number
+              target="_blank"
+              rel="noopener noreferrer"
+              className="fixed bottom-8 right-8 bg-green-500 p-3 rounded-full shadow-xl transition-transform duration-300 hover:scale-110 z-50 animate-bounce"
+            >
+              <img src="/images/whatsapp.svg" className="w-12 h-12" alt="Chat on WhatsApp" />
+            </a>
+          )}
+        </>
       )}
     </div>
   );
-}
+};
 
 export default GoToTop;
