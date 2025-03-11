@@ -26,7 +26,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.9 }}
               transition={{ duration: 1, ease: "easeInOut" }}
-              className="absolute font-[Qasira] top-0 left-0 w-full text-[36px] sm:text-[18px] md:text-[48px] leading-[72px] font-semibold text-orange-light"
+              className="absolute nt-[Qasira] top-0 left-0 w-full text-[36px] sm:text-[18px] md:text-[48px] leading-[72px] font-semibold text-orange-light"
             >
               {texts[currentIndex]}
             </motion.div>
@@ -51,7 +51,7 @@ const HeroSection = () => {
       {/* Hero Image Section with Shadow Gradient */}
       <div className="relative mx-auto max-w-7xl overflow-hidden">
         <Image
-          src="/images/heroimage1.svg"
+          src="/images/heroimage.png"
           alt="Hero Banner"
           layout="responsive"
           width={10}
