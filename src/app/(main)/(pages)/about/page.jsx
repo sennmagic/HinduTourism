@@ -53,14 +53,11 @@ const AboutUs = () => {
       specialWordsIndices="2"
       align="start"
     />
-  </div>
-
-  {/* Core Values Section */}
-  <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
+  </div><div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
     {coreValues.map((value) => (
       <div
         key={value.id}
-        className="relative w-full max-w-[336px] px-6 md:px-8 pt-12 md:pt-16 pb-16 md:pb-[132px] bg-white rounded-[10px] shadow-md flex flex-col justify-start items-start gap-5"
+        className="relative w-full max-w-[336px] px-6 md:px-8 pt-12 md:pt-16 pb-16 md:pb-[132px] bg-white rounded-[10px] shadow-md flex flex-col justify-start items-start gap-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-2"
       >
         <div
           className="flex justify-center items-center rounded-[13px] mb-4"
@@ -81,12 +78,9 @@ const AboutUs = () => {
           <span className="font-bold">{value.title}</span> <br />
           <span className="font-normal text-left">{value.description}</span>
         </div>
-      
       </div>
-    
     ))}
   </div>
-
 
 </div>
 

@@ -1,10 +1,10 @@
-
-"use client"
+"use client";
 import React, { useState } from "react";
 import Input from "@/components/atoms/Fields/InputFields";
 import TextArea from "@/components/atoms/Fields/TextArea";
 import { FormContainer } from "..";
 import { fetchAPI } from "@/utils/apiService";
+import Swal from "sweetalert2";
 
 const ContactForm = ({
   padding,
@@ -36,7 +36,7 @@ const ContactForm = ({
       };
 
       const response = await fetchAPI("contacts", "POST", payload);
-      
+
       setFormData({
         firstName: "",
         lastName: "",
@@ -45,11 +45,22 @@ const ContactForm = ({
         additionalInfo: "",
       });
 
-      alert("Form submitted successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Form Submitted!",
+        text: "Your form has been submitted successfully.",
+        confirmButtonColor: "#3085d6",
+      });
+
       if (onPrimaryClick) onSecondaryClick(response);
     } catch (error) {
       console.error("Form submission failed:", error);
-      alert(error.message || "Failed to submit form. Please try again.");
+      Swal.fire({
+        icon: "error",
+        title: "Submission Failed!",
+        text: error.message || "Failed to submit form. Please try again.",
+        confirmButtonColor: "#d33",
+      });
     }
   };
 

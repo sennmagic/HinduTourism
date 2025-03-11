@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Button from "../atoms/Button";
 import Link from "next/link";
 import Flag from 'react-world-flags';
-import { FaCaretDown, FaBars, FaTimes } from 'react-icons/fa';
+import { FaCaretDown, FaBars, FaTimes, FaWhatsapp } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,6 +64,7 @@ const Navbar = () => {
           </Link>
         </div>
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex gap-12">
           {navMenuData.map((menu, index) => (
             <div key={index} className="flex items-center gap-2.5">
@@ -73,10 +74,6 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="md:hidden flex items-center gap-0.5">
-            <img src="/images/whatsapp.svg" alt="WhatsApp" className="w-6 h-6" />
-          </div>
-
           {/* Language Switcher */}
           <div className="relative">
             <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-2 p-2 rounded-full">
@@ -97,10 +94,17 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* WhatsApp Button */}
+          {/* WhatsApp Button (Desktop) */}
           <div className="hidden md:flex">
             <a href="https://wa.me/9779851354589" target="_blank" rel="noopener noreferrer">
               <Button leftIcon={"/images/whatsapp.svg"} size="medium" text="+918375094215" variant="default" />
+            </a>
+          </div>
+
+          {/* WhatsApp Icon (Mobile) */}
+          <div className="md:hidden">
+            <a href="https://wa.me/9779851354589" target="_blank" rel="noopener noreferrer">
+              <FaWhatsapp className="text-green-500 text-3xl" />
             </a>
           </div>
 

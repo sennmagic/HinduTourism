@@ -8,13 +8,14 @@ import PremiumPackage from '@/components/services/PremiumPackage';
 import { fetchAPI } from '@/utils/apiService';
 import Showcase from '@/components/tempelates/Fullshowcase';
 import Link from 'next/link';
+
 const page = async ({ params }) => {
     const navItems = [
         { label: "Overview", id: "overview" },
         { label: "Premium Package", id: "premium-package" },
         { label: "Deluxe Package", id: "deluxe-package" },
         { label: "Exclusive Package", id: "exclusive-package" },
-        { label: "Gallery ", id: "gallery" },
+        { label: "Gallery", id: "gallery" },
     ];
 
     // Fetch temple data
@@ -89,14 +90,14 @@ const page = async ({ params }) => {
     return (
         <>
             <Breadcrumb currentnavlink={templeData.slug} />
-            <HeaderBanner  backgroundImage={backgroundImage} />
+            <HeaderBanner backgroundImage={backgroundImage} />
             <Midnavbar navItems={navItems} />
             <div id="overview" className="my-spacer mx-auto max-w-7xl px-6 flex flex-col gap-12">
                 <TextHeader text={templeData?.name} color="orange.light" align="start" />
-                <p className="w-full sm:w-[824px] text-[#2b2727] text-base sm:text-lg font-normal leading-normal">
+                <p className="w-full sm:w-[824px] text-[#2b2727] text-base sm:text-lg font-normal leading-normal text-left">
                     {templeData?.description || "No description available."}
                 </p>
-                <div className=" flex-col gap-10 inline-flex rounded-xl">
+                <div className="flex-col gap-10 inline-flex rounded-xl">
                     <div className="w-full h-px border-2 border-[#efeee8] rounded-full mb-4"></div>
                     <div className="flex-col justify-start items-start gap-4 flex">
                         <InfoHeader text="Why You Should Visit?" />
@@ -104,7 +105,7 @@ const page = async ({ params }) => {
                             {reasons.map((reason, index) => (
                                 <div key={index} className="flex justify-start items-center gap-3">
                                     <img src="/images/reasonarrow.svg" alt="arrow-icon" className="w-5 h-5 object-contain" />
-                                    <p className="text-[#2b2727] text-lg font-normal leading-relaxed">{reason}</p>
+                                    <p className="text-[#2b2727] text-lg font-normal leading-relaxed text-left">{reason}</p>
                                 </div>
                             ))}
                         </div>
@@ -113,41 +114,46 @@ const page = async ({ params }) => {
             </div>
             <PremiumPackage data={packageData} />
 
-            {/* Other Trips Section */}
-      
-        {/* Other Trips Section
-      {filteredTrips.length > 0 && (
-        <section className="max-w-7xl mx-auto px-6 my-spacer">
-          <div className="mb-10">
-            <TextHeader text="Other Trips :" specialWordsIndices="1" align="start" size="small" />
-          </div>
-          <div id="gallery" className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div id="gallery">
+                <Showcase textheader="Footprint of devotees:" infoheader="Tracing journeys online" />
+            </div>
+
+            {filteredTrips.length > 0 && (
+    <section className="max-w-7xl mx-auto px-6 my-spacer">
+        <div className="mb-10">
+            <TextHeader text="Similar trips:" color="" align="start"  specialWordsIndices='1'/>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {filteredTrips.map((trip, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                     <Link href={trip.slug === "/customise-my-trip" ? "/customise-my-trip" : `/temple/${trip.slug}`}>
-
-
-                  <>
-                    <img 
-                      src={trip.image} 
-                      alt={trip.title} 
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="p-4">
-                    <h3 className="text-lg font-semibold">{trip.title}</h3>
-                      <p className="text-gray-600">{trip.description}</p>
-                    </div>
-                  </>
-                </Link>
-              </div>
+                <div key={index} className="w-full rounded-[10px] overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+                    <Link href={trip.slug === "/customise-my-trip" ? "/customise-my-trip" : `/temple/${trip.slug}`}>
+                        <div className="relative h-72 group">
+                            <img 
+                                src={trip.image} 
+                                alt={trip.title} 
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="px-5 py-1.5 bg-[#fcfaf1] rounded-[28px] border-[1.4px] border-[#f05a28] flex items-center gap-2">
+                                    <span className="text-[#f05a28] text-sm">View Details</span>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                        <div className="bg-white p-6">
+                            <h3 className="text-[#22262e] text-lg font-semibold mb-1">
+                                {trip.title}
+                            </h3>
+                            <p className="text-[#5e6282] text-base font-normal">
+                                {trip.description}
+                            </p>
+                        </div>
+                    </Link>
+                </div>
             ))}
-          </div>
-        </section> */}
-      {/* )} */}
-<div id='gallery' className="">
-
-<Showcase  />
-</div>
+        </div>
+    </section>
+)} 
         </>
     );
 };

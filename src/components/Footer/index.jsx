@@ -44,7 +44,7 @@ const footerLinks = [
 const Footer = () => {
   return (
     <>
-      <div className="bg-[#fffbe7] pt-20 px-10 flex flex-col items-center gap-6">
+      <div className="bg-[#fffbe7] md:pt-20 pt-10 px-10 flex flex-col items-center gap-6">
         <div>
           <TextHeader
             text="Your journey to peace starts here."
@@ -66,7 +66,7 @@ const Footer = () => {
 
       {/* Footer Section */}
       <footer className="max-w-7xl mx-auto px-6">
-        <div className="py-24 flex flex-wrap justify-between gap-y-6 gap-x-9 md:h-96 h-10">
+        <div className="md:py-24 py-12 flex flex-wrap justify-between gap-y-6 gap-x-9 md:h-96 h-10">
           {/* Logo Section */}
           <div className="w-36 h-28 flex justify-center items-center mx-auto md:mx-0">
             <img className="w-32 h-30" src="/images/Logo.svg" alt="Logo" />

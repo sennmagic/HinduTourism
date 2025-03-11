@@ -8,31 +8,26 @@ export default {
   theme: {
     extend: {
       spacing: {
-        fontFamily: {
-          sans: ["var(--font-inter)", "sans-serif"],
-          custom: ['Fontspring-DEMO-BOLD-ITALIC.otf'],
-         Qasira: ['Qasira.otf']  // Add your custom font
-
-        },
-        'spacer': '112px', 
-        // Adding a custom spacing value
+        spacer: "112px", // Custom spacing value
+        sm: "80px", // Custom small screen spacing
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", "sans-serif"],
+        custom: ["Fontspring-DEMO-BOLD-ITALIC.otf"],
+        Qasira: ["Qasira.otf"], // Add your custom font
       },
       colors: {
-        default: "#AD3C16", // Custom default color
+        default: "#AD3C16",
         orange: {
           DEFAULT: "#AD3C16",
           light: "#F05A28",
-          dark: "#833419"
+          dark: "#833419",
         },
-          blue: "#00619E",
-          red:"#9D0000",
-          pink: "#C6007B"
+        blue: "#00619E",
+        red: "#9D0000",
+        pink: "#C6007B",
       },
     },
   },
-  plugins: [
-
-    require('tailwind-scrollbar-hide'),
-
-  ],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

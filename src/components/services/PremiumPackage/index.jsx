@@ -10,7 +10,7 @@ const Premiumpackage = ({ data=[] }) => {
   const sectionRefs = useRef({});
 
   return (
-    <div className="w-full max-w-7xl px-6 my-spacer mx-auto flex flex-col h-full gap-12 ">
+    <div className="w-full max-w-7xl px-6 my-spacer mx-auto flex flex-col h-full md:gap-12 gap-4 ">
       {packagedata?.map((pkg, idx) => (
         <div
           key={pkg._id}
@@ -71,7 +71,7 @@ const Premiumpackage = ({ data=[] }) => {
                   <ul className="space-y-3">
                     {pkg.includes.map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <div className="w-2.5 h-2.5 bg-[#00825d] rounded-full mt-1.5" />
+                        <img src="/images/correcticon.png" alt="" width={20}  height={20}/>
                         <span className="text-[#2b2727] leading-normal">{item}</span>
                       </li>
                     ))}
@@ -83,8 +83,7 @@ const Premiumpackage = ({ data=[] }) => {
                   <ul className="space-y-3">
                     {pkg.excludes.map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <div className="w-2.5 h-2.5 bg-[#d14343] rounded-full mt-1.5" />
-                        <span className="text-[#2b2727] leading-normal">{item}</span>
+ <img src="/images/wrongico.svg" alt="" width={20}  height={20}/>                        <span className="text-[#2b2727] leading-normal">{item}</span>
                       </li>
                     ))}
                   </ul>

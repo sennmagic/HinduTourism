@@ -56,7 +56,7 @@ const Home = async ({params}) => {
     <section>
       <HeroSection />
       <ShowCase  data={data.data} />
-      <div className="max-w-7xl my-spacer mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl my-spacer sm:my-sm mx-auto px-4 sm:px-6 lg:px-8">
 
     <InfoHeader text={"QUICK & EASY"} />
     <TextHeader text={"How to Send an Enquiry."} align="left" size="small" specialWordsIndices="2, 3, 4" />
