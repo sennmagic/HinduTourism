@@ -27,9 +27,9 @@ const page = async ({ params }) => {
 
     // Set background image based on temple name
     const backgroundImages = {
-        "Pashupatinath Temple": "/images/pashupati.svg",
+        "Pashupatinath Temple": "/images/pashupatiop.jpg",
         "Muktinath Temple": "/images/muktinath.svg",
-        "Manakamana Temple": "/images/manakamana.svg"
+        "Manakamana Temple": "/images/manak.jpg"
     };
     const backgroundImage = backgroundImages[templeData?.name] || "";
 

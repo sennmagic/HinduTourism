@@ -40,7 +40,7 @@ const contentList = [
     ctaText: "Know More",
     buttonlink:"pashupatinath-temple" ,
     images: [
-      "/images/manak.jpg ",
+      "/images/manak.jpg",
       "/images/hindu7.jpg",
       "/images/hindu8.jpg",
       "/images/hindu9.jpg",
