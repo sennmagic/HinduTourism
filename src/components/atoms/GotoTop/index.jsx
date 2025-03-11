@@ -49,7 +49,7 @@ const GoToTop = () => {
           {/* Mobile WhatsApp Floating Button */}
           {isMobile && (
             <a
-              href="https://wa.me/1234567890" // Replace with your WhatsApp number
+              href="https://wa.me/9779851354589" // Replace with your WhatsApp number
               target="_blank"
               rel="noopener noreferrer"
               className="fixed bottom-8 right-8 bg-green-500 p-3 rounded-full shadow-xl transition-transform duration-300 hover:scale-110 z-50 animate-bounce"
