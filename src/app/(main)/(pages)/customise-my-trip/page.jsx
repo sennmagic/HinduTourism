@@ -159,7 +159,7 @@ const Page = () => {
           {step === 3 && (
             <ContactForm
               onPrimaryClick={handlePrevClick}
-      
+      onSecondaryClick={handleSubmit}
               primaryButton="Previous: Itinerary"
               width="804px"
               secondaryButton="Send Enquiry"

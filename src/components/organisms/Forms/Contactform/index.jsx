@@ -49,7 +49,7 @@ const ContactForm = ({
         icon: "success",
         title: "Form Submitted!",
         text: "Your form has been submitted successfully.",
-        confirmButtonColor: "#3085d6",
+        confirmButtonColor: "#F05A28",
       });
 
       if (onPrimaryClick) onSecondaryClick(response);
@@ -59,7 +59,7 @@ const ContactForm = ({
         icon: "error",
         title: "Submission Failed!",
         text: error.message || "Failed to submit form. Please try again.",
-        confirmButtonColor: "#d33",
+        confirmButtonColor: "#F05A28",
       });
     }
   };
