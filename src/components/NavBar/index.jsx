@@ -68,7 +68,16 @@ const Navbar = () => {
         <div className="hidden md:flex gap-12">
           {navMenuData.map((menu, index) => (
             <div key={index} className="flex items-center gap-2.5">
-              <Link href={menu.url} className="text-[#823319] text-xs font-normal uppercase">{menu.label}</Link>
+             
+
+             <Link 
+  href={menu.url} 
+  className="relative text-[#823319] text-xs font-normal uppercase transition-all duration-300 ease-in-out hover:text-[#D94D1A] hover:scale-105
+  after:content-[''] after:absolute after:left-1/2 after:bottom-[-3px] after:w-0 after:h-[2px] after:bg-[#D94D1A] after:transition-all after:duration-300 after:ease-in-out hover:after:left-0 hover:after:w-full"
+>
+  {menu.label}
+</Link>
+
             </div>
           ))}
         </div>

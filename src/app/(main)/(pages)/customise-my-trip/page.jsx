@@ -96,8 +96,6 @@ const Page = () => {
 
       setStep(1);
     } catch (error) {
-      console.error("Form submission failed:", error);
-      alert("Error! Form submission failed.");
     }
   };
 
