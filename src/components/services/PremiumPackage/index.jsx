@@ -48,7 +48,7 @@ const Premiumpackage = ({ data=[] }) => {
           </div>
 
           
-          <div className="flex-1 flex flex-col gap-2 pr-6">
+          <div className="flex-1 flex flex-col gap-2 px-6">
             <div className="space-y-6">
           
               <div className="flex flex-col gap-8">
@@ -63,7 +63,7 @@ const Premiumpackage = ({ data=[] }) => {
             </div>
 
             {/* Cost Details Section */}
-            <div className="space-y-6">
+            <div className="space-y-6 ">
               <InfoHeader text="Cost details" />
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-1 p-6 bg-[#edffe9] rounded-lg shadow-lg space-y-4">
