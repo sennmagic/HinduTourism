@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import Button from "@/components/atoms/Button";
 import Link from "next/link";
 import useScrollSpy from "@/hooks/useScrollSpy";
@@ -7,15 +7,31 @@ import useScrollSpy from "@/hooks/useScrollSpy";
 const Midnavbar = ({ isMenuOpen, navItems }) => {
   const { activeSection, scrollToSection } = useScrollSpy(navItems);
   const navRef = useRef(null);
+  const navListRef = useRef(null);
 
-  // Scroll to Midnavbar on page load
+  // Scroll to the top of the page when the component is loaded
   useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top on page load
+
     if (navRef.current) {
       setTimeout(() => {
         navRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 100); // Delay to ensure the component is fully rendered before scrolling
+      }, 100);
     }
   }, []);
+
+  // Auto-scroll navbar when active section changes
+  useEffect(() => {
+    if (navListRef.current && activeSection) {
+      const activeElement = document.getElementById(`nav-${activeSection}`);
+      if (activeElement) {
+        navListRef.current.scrollTo({
+          left: activeElement.offsetLeft - navListRef.current.offsetWidth / 2 + activeElement.offsetWidth / 2,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [activeSection]);
 
   return (
     <nav
@@ -25,10 +41,14 @@ const Midnavbar = ({ isMenuOpen, navItems }) => {
       }`}
     >
       <div className="max-w-7xl mx-auto py-3 px-4 md:py-5 md:px-6">
-        <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-          <ul className="flex gap-4 md:gap-12 overflow-x-auto flex-nowrap md:overflow-visible pb-2 md:pb-0">
+        <div className="flex items-center justify-between gap-4">
+          {/* Navigation Links with Auto Scroll */}
+          <ul
+            ref={navListRef}
+            className="flex gap-4 md:gap-12 overflow-x-auto flex-nowrap md:overflow-visible pb-2 md:pb-0 flex-1 scroll-smooth"
+          >
             {navItems.map((item) => (
-              <li key={item.id} className="flex-shrink-0">
+              <li key={item.id} id={`nav-${item.id}`} className="flex-shrink-0">
                 <a
                   href={`#${item.id}`}
                   onClick={(e) => {
@@ -47,8 +67,9 @@ const Midnavbar = ({ isMenuOpen, navItems }) => {
             ))}
           </ul>
 
-          <div className="hidden md:block">
-            <Link href={"/customise-my-trip"}>
+          {/* Button */}
+          <div className="ml-auto md:ml-0 flex-shrink-0">
+            <Link href="/customise-my-trip">
               <Button
                 text="Customize Trip"
                 variant="wholyrounded"
@@ -56,6 +77,7 @@ const Midnavbar = ({ isMenuOpen, navItems }) => {
                 textcolor="orange-light"
                 color="orangeborder"
                 bordercolor="orange-light"
+                className="w-full md:w-auto"
               />
             </Link>
           </div>

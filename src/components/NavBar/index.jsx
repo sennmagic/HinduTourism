@@ -1,15 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Button from "../atoms/Button";
+import { useRouter } from 'next/navigation';
 import Link from "next/link";
-import Flag from 'react-world-flags';
+import Button from "../atoms/Button";
 import { FaCaretDown, FaBars, FaTimes, FaWhatsapp } from 'react-icons/fa';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [language, setLanguage] = useState('en');
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const router = useRouter();
 
   const navMenuData = [
     { label: "PASHUPATINATH", url: "/temple/pashupatinath-temple" },
@@ -20,40 +19,10 @@ const Navbar = () => {
     { label: "CONTACT", url: "/contact" },
   ];
 
-  const changeLanguage = (lang) => {
-    setLanguage(lang);
-    const interval = setInterval(() => {
-      const translateElement = document.getElementById('google_translate_element');
-      if (translateElement) {
-        const select = translateElement.querySelector('select');
-        if (select) {
-          select.value = lang;
-          const event = new Event('change', { bubbles: true });
-          select.dispatchEvent(event);
-          clearInterval(interval);
-        }
-      }
-    }, 100);
-  };
-
+  // Close the menu when route changes
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-    script.type = 'text/javascript';
-    document.body.appendChild(script);
-
-    window.googleTranslateElementInit = () => {
-      new window.google.translate.TranslateElement(
-        {
-          pageLanguage: 'en',
-          includedLanguages: 'en,hi',
-          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-          autoDisplay: false
-        },
-        'google_translate_element'
-      );
-    };
-  }, []);
+    setIsMenuOpen(false);
+  }, [router]);
 
   return (
     <div className="sticky top-0 z-50 w-full bg-[#fbf9f0] shadow-md">
@@ -67,42 +36,18 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex gap-12">
           {navMenuData.map((menu, index) => (
-            <div key={index} className="flex items-center gap-2.5">
-             
-
-             <Link 
-  href={menu.url} 
-  className="relative text-[#823319] text-xs font-normal uppercase transition-all duration-300 ease-in-out hover:text-[#D94D1A] hover:scale-105
-  after:content-[''] after:absolute after:left-1/2 after:bottom-[-3px] after:w-0 after:h-[2px] after:bg-[#D94D1A] after:transition-all after:duration-300 after:ease-in-out hover:after:left-0 hover:after:w-full"
->
-  {menu.label}
-</Link>
-
-            </div>
+            <Link 
+              key={index} 
+              href={menu.url} 
+              className="relative text-[#823319] text-xs font-normal uppercase transition-all duration-300 ease-in-out hover:text-[#D94D1A] hover:scale-105
+              after:content-[''] after:absolute after:left-1/2 after:bottom-[-3px] after:w-0 after:h-[2px] after:bg-[#D94D1A] after:transition-all after:duration-300 after:ease-in-out hover:after:left-0 hover:after:w-full"
+            >
+              {menu.label}
+            </Link>
           ))}
         </div>
 
         <div className="flex items-center gap-4">
-          {/* Language Switcher */}
-          <div className="relative">
-            <button onClick={() => setDropdownOpen(!dropdownOpen)} className="flex items-center gap-2 p-2 rounded-full">
-              <Flag code={language === 'en' ? 'GB' : 'IN'} style={{ width: 30, height: 20 }} />
-              <FaCaretDown className="text-xl" />
-            </button>
-            {dropdownOpen && (
-              <div className="absolute top-10 right-0 bg-white border shadow-lg rounded-md py-2">
-                <button onClick={() => { changeLanguage('en'); setDropdownOpen(false); }} className="flex items-center gap-2 p-2 w-40 hover:bg-gray-100">
-                  <Flag code="GB" style={{ width: 20, height: 15 }} />
-                  <span>English</span>
-                </button>
-                <button onClick={() => { changeLanguage('hi'); setDropdownOpen(false); }} className="flex items-center gap-2 p-2 w-40 hover:bg-gray-100">
-                  <Flag code="IN" style={{ width: 20, height: 15 }} />
-                  <span>Hindi</span>
-                </button>
-              </div>
-            )}
-          </div>
-
           {/* WhatsApp Button (Desktop) */}
           <div className="hidden md:flex">
             <a href="https://wa.me/918375094215" target="_blank" rel="noopener noreferrer">
@@ -128,7 +73,12 @@ const Navbar = () => {
       {isMenuOpen && (
         <div className="md:hidden bg-white shadow-lg absolute w-full top-[98px] left-0 right-0 px-6 py-4 flex flex-col gap-4">
           {navMenuData.map((menu, index) => (
-            <Link key={index} href={menu.url} className="text-[#823319] text-sm font-medium uppercase block py-2">
+            <Link 
+              key={index} 
+              href={menu.url} 
+              className="text-[#823319] text-sm font-medium uppercase block py-2"
+              onClick={() => setIsMenuOpen(false)} // Close menu on click
+            >
               {menu.label}
             </Link>
           ))}

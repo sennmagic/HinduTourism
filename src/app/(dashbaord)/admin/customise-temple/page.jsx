@@ -31,7 +31,7 @@ const TempleManager = () => {
       setUploading(true);
       const formData = new FormData();
       formData.append("files", file);
-      const data = await fetchAPI("upload", "POST", formData);
+      const data = await fetchAPI("temples", "POST", formData);
       return data[0]?.url;
     } finally {
       setUploading(false);

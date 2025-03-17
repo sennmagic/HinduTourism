@@ -24,11 +24,25 @@ const ContactForm = ({
   });
 
   const handleChange = (field, value) => {
+    if (field === "phone") {
+      // Ensure only digits and max 10 characters
+      if (!/^\d{0,10}$/.test(value)) return;
+    }
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.phone.length !== 10) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Phone Number",
+        text: "Please enter a 10-digit phone number.",
+        confirmButtonColor: "#F05A28",
+      });
+      return;
+    }
+
     try {
       const payload = {
         ...formData,
@@ -52,7 +66,7 @@ const ContactForm = ({
         confirmButtonColor: "#F05A28",
       });
 
-      if (onPrimaryClick) onSecondaryClick(response);
+      if (onPrimaryClick) onPrimaryClick(response);
     } catch (error) {
       console.error("Form submission failed:", error);
       Swal.fire({

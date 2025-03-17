@@ -74,7 +74,7 @@ const Page = () => {
     try {
       const payload = {
         ...formData,
-        phone: `+977${formData.phone}`, // Ensure country code is included
+        phone: `+91${formData.phone}`, // Ensure country code is included
       };
 
       const response = await fetchAPI("contacts", "POST", payload);
