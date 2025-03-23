@@ -36,7 +36,7 @@ export const FormContainer = ({
           <div className="flex justify-between items-center">
             {formTitle && (
               <h2 className="text-xl font-semibold text-gray-800 text-center mb-4">
-                {formTitle}
+            {formTitle}
               </h2>
             )}
            

@@ -25,7 +25,6 @@ const ContentShowcase = ({
     <div className="max-w-7xl mx-auto w-[500px]  flex flex-col justify-start items-start gap-8 overflow-hidden">
       <div className="flex flex-col gap-3">
         <div className="text-[#efede7] text-9xl font-semibold leading-none">
-          {String(index + 1).padStart(2, "0")}
         </div>
         <div className="flex items-center gap-4">
           <div className="w-[54px] h-[1.5px] bg-[#1eaa6e]" />

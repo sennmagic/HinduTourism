@@ -16,7 +16,9 @@ const Input = ({
   const isValid = !validate || validate(value);
 
   const handleChange = (e) => {
-    onChange(e);
+    if (onChange && typeof onChange === "function") {
+      onChange(e); // Safely call the onChange function passed as a prop
+    }
     if (!isTouched) setIsTouched(true);
   };
 
