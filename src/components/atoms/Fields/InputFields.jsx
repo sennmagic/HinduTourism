@@ -1,76 +1,115 @@
 import { useState } from "react";
+import 'react-international-phone/style.css';
+import { PhoneInput } from 'react-international-phone';
 
-const Input = ({ 
-  label, 
-  required = false, 
-  placeholder, 
-  type = "text", 
-  prefix, 
-  options, 
-  value, 
-  onChange, 
-  validate, 
-  errorMessage 
+const Input = ({
+  label,
+  required = false,
+  placeholder,
+  type = "text",
+  prefix,
+  options,
+  value,
+  onChange,
+  validate,
+  errorMessage,
+  phone = false,
 }) => {
   const [isTouched, setIsTouched] = useState(false);
+
   const isValid = !validate || validate(value);
 
-  const handleChange = (e) => {
+  const handleChange = (val, countryData = null) => {
     if (onChange && typeof onChange === "function") {
-      onChange(e); // Safely call the onChange function passed as a prop
+      // Return raw value or structured phone data
+      phone
+        ? onChange({
+            number: val,
+            countryCode: countryData?.countryCode,
+            dialCode: countryData?.dialCode,
+            fullCountry: countryData,
+          })
+        : onChange(val);
     }
     if (!isTouched) setIsTouched(true);
   };
 
-  return (
-    <div className="w-full flex-col justify-start items-start gap-2 inline-flex overflow-hidden">
-      <div className="self-stretch justify-start items-center gap-2.5 inline-flex">
-        <span className="text-stone-800 text-sm font-normal font-['Inter'] leading-[21px]">
-          {label}
-          {required && <span className="text-rose-600"> *</span>}
-        </span>
-      </div>
-      <div className={`self-stretch h-12 p-3 bg-neutral-50 rounded border ${isTouched && !isValid ? "border-red-500" : "border-slate-300"} flex-col justify-start items-start gap-2.5 flex`}>
-        {type === "select" && options ? (
-          <select
-            value={value}
-            onChange={handleChange}
-            className="text-gray-400 text-base font-normal font-['Inter'] leading-normal bg-transparent outline-none w-full"
-          >
-            <option value="" disabled>
-              {placeholder}
+  const renderInputField = () => {
+    if (phone) {
+      return (
+        <PhoneInput
+          country={"np"}
+          value={value || ""} 
+          onChange={handleChange}
+          inputProps={{
+            required,
+            name: "phone",
+            autoFocus: false,
+            className:
+              "w-full bg-transparent outline-none text-base text-gray-700",
+          }}
+          containerClass="!w-full"
+          inputClass="!w-full !bg-transparent !outline-none !border-none text-base text-gray-700"
+          buttonClass="!bg-transparent"
+          dropdownClass="!z-50"
+        />
+      );
+    }
+
+    if (type === "select" && options) {
+      return (
+        <select
+          value={value}
+          onChange={(e) => handleChange(e.target.value)}
+          className="w-full bg-transparent outline-none text-base text-gray-700"
+        >
+          <option value="" disabled>
+            {placeholder}
+          </option>
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
             </option>
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        ) : prefix ? (
-          <div className="flex items-center gap-4 w-full">
-            <div className="flex items-center gap-2">
-              <span className="text-gray-400 text-base font-medium font-['Inter'] leading-normal">
-                {prefix}
-              </span>
-            </div>
-            <input
-              type={type}
-              value={value}
-              onChange={handleChange}
-              placeholder={placeholder}
-              className="text-gray-400 text-base font-normal font-['Inter'] leading-normal bg-transparent outline-none w-full"
-            />
-          </div>
-        ) : (
-          <input
-            type={type}
-            value={value}
-            onChange={handleChange}
-            placeholder={placeholder}
-            className="text-gray-400 text-base font-normal font-['Inter'] leading-normal bg-transparent outline-none w-full"
-          />
+          ))}
+        </select>
+      );
+    }
+
+    return (
+      <div className="flex items-center gap-4 w-full">
+        {prefix && (
+          <span className="text-gray-400 text-base font-medium">
+            {prefix}
+          </span>
         )}
+        <input
+          type={type}
+          value={value || ""} // Ensure the value is always a string
+          onChange={(e) => handleChange(e.target.value)}
+          placeholder={placeholder}
+          className="w-full bg-transparent outline-none text-base text-gray-700"
+        />
       </div>
+    );
+  };
+
+  return (
+    <div className="w-full flex flex-col gap-2">
+      {label && (
+        <label className="text-sm font-medium text-stone-800">
+          {label}
+          {required && <span className="text-red-500"> *</span>}
+        </label>
+      )}
+
+      <div
+        className={`p-3 bg-neutral-50 rounded border transition-all duration-200 ${
+          isTouched && !isValid ? "border-red-500" : "border-slate-300"
+        }`}
+      >
+        {renderInputField()}
+      </div>
+
       {isTouched && !isValid && (
         <span className="text-red-500 text-sm mt-1">{errorMessage}</span>
       )}

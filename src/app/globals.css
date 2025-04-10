@@ -29,3 +29,20 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Add this to your global styles or in the component's style /* Target the flag container of PhoneInput */
+.react-tel-input .flag-dropdown {
+  margin-right: 12px; /* Increase the gap between flag and country code */
+}
+/* Hide country code */
+.react-tel-input .form-control {
+  padding-left: 0 !important; /* Remove left padding for the input */
+}
+
+.react-tel-input .phone-input .tel-input {
+  visibility: hidden !important; /* Hide the country code */
+}
+
+.react-tel-input .flag-dropdown {
+  visibility: visible !important; /* Ensure flag is visible */
+}

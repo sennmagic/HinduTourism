@@ -67,11 +67,7 @@ const Testimonial = () => {
                       </p>
                     </div>
                   </div>
-                  <img
-                    className="absolute left-0 top-0 w-[68px] h-[68px] rounded-full"
-                    src={testimonial.image}
-                    alt={`${testimonial.name}`}
-                  />
+              
                 </div>
               </div>
             ))}

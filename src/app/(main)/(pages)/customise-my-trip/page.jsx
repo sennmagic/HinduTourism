@@ -132,7 +132,7 @@ const Page = () => {
               fields={[
                 { label: "Enter Number of Adults", placeholder: "e.g., 2", name: "adults", value: formData.adults, onChange: handleChange },
                 { label: "Enter Number of Children", placeholder: "e.g., 1 (below 10 years)", name: "children", value: formData.children, onChange: handleChange },
-                { label: "Group Size *", type: "select", placeholder: "Select group size", name: "groupSize", value: formData.groupSize, onChange: handleChange, options: [{ value: "1", label: "1" }, { value: "2", label: "2" }, { value: "3", label: "3" }, { value: "4", label: "4" }, { value: "5+", label: "5+" }] },
+                { label: "Group Size *", type: "select", placeholder: "Select group size", name: "groupSize", value: formData.groupSize, onChange: handleChange, options: [{ value: "1", label: "1" }] },
               ]}
             />
           )}

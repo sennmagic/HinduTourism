@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useState } from "react";
 import Input from "@/components/atoms/Fields/InputFields";
 import TextArea from "@/components/atoms/Fields/TextArea";
@@ -18,21 +18,26 @@ const ContactForm = ({
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    phone: "",
+    phone: "", // Ensure phone starts as an empty string
     email: "",
     additionalInfo: "",
   });
 
   const handleChange = (field, value) => {
-    if (field === "phone") {
-      // Ensure only digits and max 10 characters
-      if (!/^\d{0,10}$/.test(value)) return;
+    if (field === "phone" && value && typeof value === "object") {
+      // If it's a phone field, use the value object passed by PhoneInput
+      setFormData((prev) => ({
+        ...prev,
+        phone: value.number, // Use only the number part
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [field]: value }));
     }
-    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (formData.phone.length !== 10) {
       Swal.fire({
         icon: "error",
@@ -46,7 +51,7 @@ const ContactForm = ({
     try {
       const payload = {
         ...formData,
-        phone: `+977${formData.phone}`,
+        phone: `+977${formData.phone}`, // Ensure phone is in the correct format
       };
 
       const response = await fetchAPI("contacts", "POST", payload);
@@ -57,7 +62,7 @@ const ContactForm = ({
         phone: "",
         email: "",
         additionalInfo: "",
-      });
+    });
 
       Swal.fire({
         icon: "success",
@@ -108,10 +113,11 @@ const ContactForm = ({
         <Input
           label="Phone Number"
           required
+          phone={true} // Pass phone={true} to indicate it's a phone input
           placeholder="Your Phone Number"
           prefix="+91"
           value={formData.phone}
-          onChange={(e) => handleChange("phone", e.target.value)}
+          onChange={(value) => handleChange("phone", value)} // Corrected phone input handler
         />
         <Input
           label="Email Address"
@@ -122,7 +128,7 @@ const ContactForm = ({
           onChange={(e) => handleChange("email", e.target.value)}
         />
         <TextArea
-          label="Additional Information"
+          label=" Additional Necessity"
           placeholder="e.g. We'd like to travel to three temples: Pashupatinath, Muktinath & Manakamana."
           value={formData.additionalInfo}
           onChange={(e) => handleChange("additionalInfo", e.target.value)}
