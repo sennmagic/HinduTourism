@@ -1,27 +1,35 @@
-"use client"
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { FaBars, FaTimes, FaWhatsapp } from 'react-icons/fa';
-import { SiViber } from 'react-icons/si';
-import { MdPhone, MdEmail } from 'react-icons/md';
+"use client";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa";
+import { SiViber } from "react-icons/si";
+import { MdPhone, MdEmail } from "react-icons/md";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
   const navMenuData = [
-    { label: 'PASHUPATINATH', url: '/temple/pashupatinath-temple' },
-    { label: 'MUKTINATH', url: '/temple/muktinath-temple' },
-    { label: 'MANAKAMANA', url: '/temple/manakamana-temple' },
-    { label: 'BLOG', url: '/blogs' },
-    { label: 'ABOUT US', url: '/about' },
-    { label: 'Book Your Trip', url: '/contact' },
+    { label: "PASHUPATINATH", url: "/temple/pashupatinath-temple" },
+    { label: "MUKTINATH", url: "/temple/muktinath-temple" },
+    { label: "MANAKAMANA", url: "/temple/manakamana-temple" },
+    { label: "BLOG", url: "/blogs" },
+    { label: "ABOUT US", url: "/about" },
+    { label: "Book Your Trip", url: "/contact" },
   ];
 
   useEffect(() => {
     setIsMenuOpen(false);
   }, [router]);
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen((prevState) => !prevState);
+  };
+
+  const handleCloseMenu = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     <>
@@ -32,11 +40,15 @@ const Navbar = () => {
           <div className="flex items-center flex-wrap gap-4">
             <div className="flex items-center gap-1">
               <MdPhone className="text-lg" />
-              <a href="tel:+918375094215" className="hover:underline">+91 83750 94215</a>
+              <a href="tel:+918375094215" className="hover:underline">
+                +91 83750 94215
+              </a>
             </div>
             <div className="flex items-center gap-1">
               <MdEmail className="text-lg" />
-              <a href="mailto:info@example.com" className="hover:underline">info@thehindutourism.com</a>
+              <a href="mailto:info@example.com" className="hover:underline">
+                info@thehindutourism.com
+              </a>
             </div>
           </div>
 
@@ -98,10 +110,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Toggle */}
           <div className="flex items-center md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-2xl"
-            >
+            <button onClick={handleMenuToggle} className="text-2xl">
               {isMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
           </div>
@@ -109,18 +118,24 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white shadow-lg absolute w-full top-[98px] left-0 right-0 px-6 py-4 flex flex-col gap-4">
-            {navMenuData.map((menu, index) => (
-              <Link
-                key={index}
-                href={menu.url}
-                className="text-[#823319] text-sm font-medium uppercase block py-2"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {menu.label}
-              </Link>
-            ))}
-          </div>
+          <>
+            <div
+              className="fixed inset-0 bg-black opacity-50 z-40"
+              onClick={handleCloseMenu}
+            ></div>
+            <div className="md:hidden bg-white shadow-lg absolute w-full top-[98px] left-0 right-0 px-6 py-4 flex flex-col gap-4 z-50">
+              {navMenuData.map((menu, index) => (
+                <Link
+                  key={index}
+                  href={menu.url}
+                  className="text-[#823319] text-sm font-medium uppercase block py-2"
+                  onClick={handleCloseMenu}
+                >
+                  {menu.label}
+                </Link>
+              ))}
+            </div>
+          </>
         )}
       </nav>
     </>
