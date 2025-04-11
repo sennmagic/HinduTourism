@@ -1,9 +1,9 @@
-"use client"
+'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import InfoHeader from '@/components/atoms/TextHeadings/InfoHeader';
 import Image from 'next/image';
-import useScrollSpy from "@/hooks/useScrollSpy";
+import useScrollSpy from '@/hooks/useScrollSpy';
 
 const navItems = [
   { id: 'overview', label: 'Introduction' },
@@ -14,12 +14,13 @@ const navItems = [
 ];
 
 const Sidenavbar = () => {
-    const { activeSection, scrollToSection } = useScrollSpy(navItems);
-
-
+  const { activeSection, scrollToSection } = useScrollSpy(
+    navItems.map((item) => item.id)
+  );
 
   return (
     <aside className="w-full md:w-56 space-y-9 md:sticky md:top-32 self-start">
+      {/* CONTENTS */}
       <div className="space-y-6">
         <InfoHeader text="CONTENTS" />
 
@@ -29,10 +30,12 @@ const Sidenavbar = () => {
               key={item.id}
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection(item.id)
+                scrollToSection(item.id);
               }}
-              className={`text-base cursor-pointer ${
-                activeSection === item.id ? 'text-orange-light' : 'text-black'
+              className={`text-base cursor-pointer transition-colors duration-200 ${
+                activeSection === item.id
+                  ? 'text-orange-500 font-semibold'
+                  : 'text-gray-800'
               }`}
             >
               {item.label}
@@ -41,9 +44,9 @@ const Sidenavbar = () => {
         </ul>
       </div>
 
-      {/* Social Media Icons */}
+      {/* ICONS */}
       <div className="flex gap-3">
-        {["sharelink", "facebookicon", "instaicon"].map((icon) => (
+        {['sharelink', 'facebookicon', 'instaicon'].map((icon) => (
           <div
             key={icon}
             className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center"
